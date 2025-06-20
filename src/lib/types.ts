@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from 'lucide-react';
 
 export type TransactionCategory = 
@@ -56,3 +57,9 @@ export interface NavItem {
   href: string;
   icon: LucideIcon;
 }
+
+export type PieChartEntry = {
+  name: string; // Category name or label for the slice
+  value: number; // The numerical value for the slice
+  fill?: string; // Optional: color for the slice, can be managed by ChartConfig too
+};

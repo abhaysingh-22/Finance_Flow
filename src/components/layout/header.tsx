@@ -1,3 +1,4 @@
+
 "use client";
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -26,7 +27,7 @@ export function Header({ title }: HeaderProps) {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-10 w-10 rounded-full">
             <Avatar className="h-10 w-10 border">
-              <AvatarImage src="https://placehold.co/100x100.png" alt="User Avatar" data-ai-hint="user avatar" />
+              <AvatarImage src="https://placehold.co/100x100/E2E8F0/4A5568.png" alt="User Avatar" data-ai-hint="profile avatar" />
               <AvatarFallback>
                 <UserCircle className="h-6 w-6 text-muted-foreground" />
               </AvatarFallback>
