@@ -1,9 +1,11 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/layout/app-sidebar';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/providers/theme-provider';
+import { ChatbotDialog } from '@/components/chatbot/chatbot-dialog';
 
 export const metadata: Metadata = {
   title: 'FinanceFlow',
@@ -31,6 +33,7 @@ export default function RootLayout({
                 {children}
               </SidebarInset>
             </div>
+            <ChatbotDialog />
           </SidebarProvider>
           <Toaster />
         </ThemeProvider>
