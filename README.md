@@ -47,23 +47,25 @@ Finance Flow is a comprehensive personal finance management web application buil
 
 3. **Set Up Environment Variables:**
    - Create a `.env.local` file in the root directory
-   - Add your Firebase configuration and Google AI API keys
+   - Add your Google Gemini API key and Firebase configuration
    ```bash
-   # Firebase Config
-   NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
-   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   # Google AI (Gemini) API Key for Genkit
+   GOOGLE_GENAI_API_KEY=your_actual_gemini_api_key_here
+   
+   # Firebase Config (if using Firebase features)
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
    NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-   # Add other Firebase config variables
-
-   # Google AI (for Genkit)
-   GOOGLE_GENAI_API_KEY=your_google_ai_api_key
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
    ```
 
 4. **Run the Development Server:**
    ```bash
    npm run dev
    ```
-   The application will start on `http://localhost:9002`
+   The application will start on `http://localhost:3000`
 
 5. **Development with AI Features (Optional):**
    For AI chatbot development:

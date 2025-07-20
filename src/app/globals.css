@@ -2,88 +2,142 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 220 17% 95%; /* Light gray #F0F2F5 */
-    --foreground: 222 47% 11%; /* Darker gray for text */
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 231 48% 48%; /* Deep indigo #3F51B5 */
-    --primary-foreground: 0 0% 100%; /* White */
-    --secondary: 220 13% 91%; /* Lighter gray */
-    --secondary-foreground: 222 47% 11%;
-    --muted: 220 9% 82%; /* Muted gray */
-    --muted-foreground: 220 9% 45%;
-    --accent: 263 44% 55%; /* Vivid purple #7E57C2 */
-    --accent-foreground: 0 0% 100%; /* White */
-    --destructive: 0 72% 51%; /* Red */
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 13% 85%; /* Slightly darker border */
-    --input: 220 13% 89%;
-    --ring: 231 48% 48%; /* Primary color for rings */
-    --chart-1: 231 48% 48%; /* Primary */
-    --chart-2: 263 44% 55%; /* Accent */
-    --chart-3: 25 84% 60%; 
-    --chart-4: 160 60% 45%;
-    --chart-5: 30 80% 55%;
-    --radius: 0.5rem;
-
-    /* Sidebar specific variables - can be adjusted if needed */
-    --sidebar-background: 0 0% 100%; /* White background for sidebar */
-    --sidebar-foreground: 222 47% 11%; /* Dark text */
-    --sidebar-primary: 231 48% 48%; /* Primary color for active/hover items */
-    --sidebar-primary-foreground: 0 0% 100%; /* White text on primary */
-    --sidebar-accent: 220 17% 92%; /* Lighter gray for hover background */
-    --sidebar-accent-foreground: 231 48% 48%; /* Primary color for text on hover */
-    --sidebar-border: 220 13% 85%;
-    --sidebar-ring: 231 48% 48%;
-  }
-
-  .dark {
-    --background: 222 47% 11%; /* Dark blue-gray */
-    --foreground: 0 0% 98%; /* Almost white text */
-    --card: 222 47% 14%; /* Slightly lighter dark */
-    --card-foreground: 0 0% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 231 48% 58%; /* Lighter indigo for dark mode */
-    --primary-foreground: 222 47% 11%;
-    --secondary: 222 47% 18%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 222 47% 22%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 263 44% 65%; /* Lighter purple for dark mode */
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 63% 50%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 222 47% 25%;
-    --input: 222 47% 20%;
-    --ring: 231 48% 58%;
-    --chart-1: 231 48% 58%;
-    --chart-2: 263 44% 65%;
-    --chart-3: 25 70% 60%;
-    --chart-4: 160 50% 50%;
-    --chart-5: 30 70% 60%;
-
-    --sidebar-background: 222 47% 11%; /* Dark background for sidebar */
-    --sidebar-foreground: 0 0% 98%; /* Light text */
-    --sidebar-primary: 231 48% 58%; /* Lighter primary for active/hover items */
-    --sidebar-primary-foreground: 222 47% 11%; /* Dark text on primary */
-    --sidebar-accent: 222 47% 18%; /* Slightly lighter dark for hover background */
-    --sidebar-accent-foreground: 231 48% 58%; /* Primary color for text on hover */
-    --sidebar-border: 222 47% 25%;
-    --sidebar-ring: 231 48% 58%;
-  }
+/* CSS Variables */
+:root {
+  --background: 220 17% 95%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 231 48% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 13% 91%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 220 9% 82%;
+  --muted-foreground: 220 9% 45%;
+  --accent: 263 44% 55%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 13% 85%;
+  --input: 220 13% 89%;
+  --ring: 231 48% 48%;
+  --chart-1: 231 48% 48%;
+  --chart-2: 263 44% 55%;
+  --chart-3: 25 84% 60%;
+  --chart-4: 160 60% 45%;
+  --chart-5: 30 80% 55%;
+  --radius: 0.5rem;
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-primary: 231 48% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 220 17% 92%;
+  --sidebar-accent-foreground: 231 48% 48%;
+  --sidebar-border: 220 13% 85%;
+  --sidebar-ring: 231 48% 48%;
 }
 
-@layer base {
-  * {
-    @apply border-border;
+.dark {
+  --background: 222 47% 11%;
+  --foreground: 0 0% 98%;
+  --card: 222 47% 14%;
+  --card-foreground: 0 0% 98%;
+  --popover: 222 47% 11%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 231 48% 58%;
+  --primary-foreground: 222 47% 11%;
+  --secondary: 222 47% 18%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 222 47% 22%;
+  --muted-foreground: 0 0% 60%;
+  --accent: 263 44% 55%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 222 47% 28%;
+  --input: 222 47% 28%;
+  --ring: 231 48% 58%;
+  --chart-1: 231 48% 58%;
+  --chart-2: 263 44% 55%;
+  --chart-3: 25 84% 60%;
+  --chart-4: 160 60% 45%;
+  --chart-5: 30 80% 55%;
+  --sidebar-background: 222 47% 11%;
+  --sidebar-foreground: 0 0% 90%;
+  --sidebar-primary: 231 48% 58%;
+  --sidebar-primary-foreground: 222 47% 11%;
+  --sidebar-accent: 222 47% 18%;
+  --sidebar-accent-foreground: 231 48% 58%;
+  --sidebar-border: 222 47% 28%;
+  --sidebar-ring: 231 48% 58%;
+}
+
+/* Custom Animations */
+@layer utilities {
+  .animate-bounce-delayed-1 {
+    animation: bounce 1s infinite 0ms;
   }
-  body {
-    @apply bg-background text-foreground;
-    /* Removed explicit font-family here as Tailwind's font-body class handles it */
+  .animate-bounce-delayed-2 {
+    animation: bounce 1s infinite 150ms;
+  }
+  .animate-bounce-delayed-3 {
+    animation: bounce 1s infinite 300ms;
+  }
+
+  .animate-in {
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation-name: fadeIn;
+  }
+
+  .slide-in-from-bottom-4 {
+    animation-name: slideInFromBottom;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .custom-scrollbar::-webkit-scrollbar,
+  .chat-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track,
+  .chat-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb,
+  .chat-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 2px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+  .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
   }
 }

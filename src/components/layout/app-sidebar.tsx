@@ -19,7 +19,11 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <Sidebar collapsible="icon" variant="sidebar" side="left" className="border-r">
+    <Sidebar 
+      collapsible="icon" 
+      variant="sidebar" 
+      side="left" 
+      className="border-r z-50 md:z-auto">
       <SidebarHeader className="p-4 flex justify-center items-center h-16 border-b">
         <Link href="/" className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center" aria-label="FinanceFlow Home">
           <AppLogo className="h-7 w-7 text-primary" />

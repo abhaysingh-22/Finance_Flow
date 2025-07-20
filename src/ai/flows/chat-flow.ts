@@ -22,6 +22,24 @@ const ChatOutputSchema = z.object({
 export type ChatOutput = z.infer<typeof ChatOutputSchema>;
 
 export async function simpleChat(input: ChatInput): Promise<ChatOutput> {
+  // Temporary mock response for testing - replace with actual API when ready
+  if (!process.env.GOOGLE_GENAI_API_KEY || process.env.GOOGLE_GENAI_API_KEY === 'PUT_YOUR_ACTUAL_API_KEY_HERE') {
+    // Mock responses for testing
+    const mockResponses = [
+      "I'm here to help with your finances! What would you like to know?",
+      "That's a great question about personal finance. Here are some tips...",
+      "I can help you track expenses, create budgets, and manage your money better.",
+      "Financial planning is important. Let me help you with that!",
+      "Thank you for using FinanceFlow! How else can I assist you?"
+    ];
+    
+    const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+    
+    return {
+      reply: `🤖 [Mock Response] ${randomResponse} (Note: Please configure your Google AI API key to enable full AI features)`
+    };
+  }
+  
   return simpleChatFlow(input);
 }
 

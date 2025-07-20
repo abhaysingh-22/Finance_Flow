@@ -13,6 +13,16 @@ import type { Transaction } from "@/lib/types";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { format } from "date-fns";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
+
+const formatCurrency = (amount: number) => {
+  return amount.toLocaleString('en-US', { 
+    style: 'currency', 
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  });
+};
 
 const mockTransactions: Transaction[] = [
   { id: "1", date: new Date(2024, 5, 28), description: "Salary Deposit", amount: 5000, type: "income", category: "Salary" },
@@ -34,50 +44,93 @@ export function RecentTransactionsTable() {
     setTransactions(mockTransactions);
   }, []);
 
-  if (transactions.length === 0) {
-    return (
-      <Card className="shadow-lg">
-        <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
-          <CardDescription>No recent transactions to display.</CardDescription>
-        </CardHeader>
-      </Card>
-    );
-  }
-
   return (
-    <Card className="shadow-lg">
+    <Card className={cn(
+      "shadow-lg transition-all duration-300",
+      "border border-gray-200 dark:border-gray-800"
+    )}>
       <CardHeader>
-        <CardTitle>Recent Transactions</CardTitle>
-        <CardDescription>A quick look at your latest financial activities.</CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Recent Transactions</CardTitle>
+            <CardDescription>
+              {transactions.length === 0
+                ? "No recent transactions to display."
+                : "A quick look at your latest financial activities."}
+            </CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[300px] md:h-[400px]">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {transactions.map((transaction) => (
-                <TableRow key={transaction.id}>
-                  <TableCell>{format(transaction.date, "MMM dd, yyyy")}</TableCell>
-                  <TableCell className="font-medium">{transaction.description}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className="capitalize">{transaction.category}</Badge>
-                  </TableCell>
-                  <TableCell className={`text-right font-semibold ${transaction.type === 'income' ? 'text-green-600' : 'text-red-600'}`}>
-                    {transaction.type === 'income' ? '+' : '-'}${transaction.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </ScrollArea>
+        <div className="relative">
+          <ScrollArea className="h-[300px] md:h-[400px] custom-scrollbar">
+            {transactions.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full space-y-4 text-center p-4">
+                <p className="text-muted-foreground text-sm">
+                  No transactions found. Start adding your financial activities to see them here.
+                </p>
+              </div>
+            ) : (
+              <>
+                <div className="md:hidden space-y-3">
+                  {transactions.map((transaction) => (
+                    <Card key={transaction.id} className="p-4 border border-gray-200 dark:border-gray-800">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="space-y-1">
+                          <p className="font-medium">{transaction.description}</p>
+                          <p className="text-sm text-muted-foreground">
+                            {format(transaction.date, "MMM dd, yyyy")}
+                          </p>
+                        </div>
+                        <p className={cn(
+                          "font-semibold text-right",
+                          transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
+                        )}>
+                          {transaction.type === 'income' ? '+' : '-'}
+                          {formatCurrency(transaction.amount)}
+                        </p>
+                      </div>
+                      <Badge variant="outline" className="capitalize text-xs">
+                        {transaction.category}
+                      </Badge>
+                    </Card>
+                  ))}
+                </div>
+
+                <div className="hidden md:block">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Description</TableHead>
+                        <TableHead>Category</TableHead>
+                        <TableHead className="text-right">Amount</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {transactions.map((transaction) => (
+                        <TableRow key={transaction.id}>
+                          <TableCell>{format(transaction.date, "MMM dd, yyyy")}</TableCell>
+                          <TableCell className="font-medium">{transaction.description}</TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="capitalize">{transaction.category}</Badge>
+                          </TableCell>
+                          <TableCell className={cn(
+                            "text-right font-semibold whitespace-nowrap",
+                            transaction.type === 'income' ? 'text-green-600' : 'text-red-600'
+                          )}>
+                            {transaction.type === 'income' ? '+' : '-'}
+                            {formatCurrency(transaction.amount)}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </>
+            )}
+          </ScrollArea>
+        </div>
       </CardContent>
     </Card>
   );
